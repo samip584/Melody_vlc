@@ -1,11 +1,17 @@
 from tkinter import*
 import tkinter.messagebox
 import json
+import vlc
 
 
 
 def donothing():
     print("Nothing is to be done")
+
+def set_equalizer_preset(i):
+	rock = vlc.libvlc_audio_equalizer_new_from_preset(i)
+	libvlc_media_player_set_equalizer(rock)
+
 	
 def equalizer_window():
 	root = Tk()
@@ -20,7 +26,7 @@ def equalizer_window():
 	drop_menu.add_cascade(label="Set Equalizer", menu=submenu)
 
 	for preset in music_data:
-	    submenu.add_command(label=preset["Name"], command = donothing)
+	    submenu.add_command(label=preset["Name"], command = set_equalizer_preset(preset["Preset"]))
 
 
 	scale_frame = Frame(root)

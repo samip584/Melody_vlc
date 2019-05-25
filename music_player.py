@@ -255,7 +255,7 @@ def set_song_time(val):
 	total_length = song.get_length()
 	val = int(val)
 	time = int((val*total_length)/100)
-	song.set_time(time)
+	#song.set_time(time)
 
 
 
