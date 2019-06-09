@@ -177,6 +177,8 @@ def pausesong(event):
         statusbar['text'] = "Paused: " + listofsongs[index]
         paused = True
 
+
+
 def nextsong(event):
     # global paused
 
@@ -257,7 +259,12 @@ def set_song_time(val):
 	time = int((val*total_length)/100)
 	#song.set_time(time)
 
-
+def set_equalizer_preset():
+	
+	#print(vlc.libvlc_media_list_player_get_state(instance))
+	'''rock = vlc.libvlc_audio_equalizer_new_from_preset(1)
+				vlc.libvlc_media_player_set_equalizer(music_player, rock)
+				print("eqset")'''
 
 
 
@@ -273,7 +280,7 @@ file_menu.add_command(label = "Exit", command = root.quit)
 
 options_menu = Menu(drop_menu, tearoff = 0)
 drop_menu.add_cascade(label = "Options", menu = options_menu)
-options_menu.add_command(label = "Equalizer", command = equalizer_window)
+options_menu.add_command(label = "Equalizer", command = lambda: equalizer_window(song))
 
 help_menu = Menu(drop_menu, tearoff = 0)
 drop_menu.add_cascade(label = "Help", menu = help_menu)

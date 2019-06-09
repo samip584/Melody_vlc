@@ -2,22 +2,24 @@ from tkinter import*
 import tkinter.messagebox
 import json
 import vlc
-
+import os
 
 
 def donothing():
     print("Nothing is to be done")
 
-def set_equalizer_preset(i):
-	rock = vlc.libvlc_audio_equalizer_new_from_preset(i)
-	libvlc_media_player_set_equalizer(rock)
+def set_equalizer_preset(preset, song):
+	eq_preset = vlc.libvlc_audio_equalizer_new_from_preset(int(preset["Preset"]))
+	song.set_equalizer(eq_preset)
+	
 
 	
-def equalizer_window():
+def equalizer_window(song):
 	root = Tk()
 	root.minsize(250, 100)
-	with open("equi.txt", "r") as file:
+	with open("/home/samip/Codes/Melody_vlc/equi.txt", "r") as file:
 	    music_data = json.load(file)
+
 	root.title("Equalizer ")
 	drop_menu = Menu(root)
 	root.config(menu=drop_menu, bd=1, relief=RAISED)
@@ -25,8 +27,13 @@ def equalizer_window():
 	submenu = Menu(drop_menu, tearoff=0)
 	drop_menu.add_cascade(label="Set Equalizer", menu=submenu)
 
-	for preset in music_data:
-	    submenu.add_command(label=preset["Name"], command = set_equalizer_preset(preset["Preset"]))
+	submenu.add_command(label=music_data[0]["Name"], command = lambda: set_equalizer_preset(music_data[0],song))
+	submenu.add_command(label=music_data[1]["Name"], command = lambda: set_equalizer_preset(music_data[1],song))
+	submenu.add_command(label=music_data[2]["Name"], command = lambda: set_equalizer_preset(music_data[2],song))
+	submenu.add_command(label=music_data[3]["Name"], command = lambda: set_equalizer_preset(music_data[3],song))
+	submenu.add_command(label=music_data[4]["Name"], command = lambda: set_equalizer_preset(music_data[4],song))
+	submenu.add_command(label=music_data[5]["Name"], command = lambda: set_equalizer_preset(music_data[5],song))
+	submenu.add_command(label=music_data[6]["Name"], command = lambda: set_equalizer_preset(music_data[6],song))
 
 
 	scale_frame = Frame(root)

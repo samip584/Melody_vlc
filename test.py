@@ -51,14 +51,14 @@ def directorychooser():
     song = music_player.get_media_player()
     '''for i in range(1,18):
                     print(i,vlc.libvlc_audio_equalizer_get_preset_name(i))'''
-    '''
-    rock = vlc.libvlc_audio_equalizer_new_from_preset(7)
+    
+    rock = vlc.libvlc_audio_equalizer_new_from_preset(1)
     song.set_equalizer(rock)
-    print(vlc.libvlc_audio_equalizer_get_amp_at_index(rock,1))
-    music_player.play()'''
-    hiphop = vlc.libvlc_audio_equalizer_new()
-    song.set_equalizer(hiphop)
+    #print(vlc.libvlc_audio_equalizer_get_amp_at_index(rock,1))
     music_player.play()
+    '''hiphop = vlc.libvlc_audio_equalizer_new()
+                song.set_equalizer(hiphop)
+                music_player.play()'''
 
 drop_menu = Menu(root)
 root.config(menu = drop_menu)
